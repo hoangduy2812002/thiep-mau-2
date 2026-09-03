@@ -313,26 +313,27 @@ async function createImage(event, album, stt) {
       return;
     }
 
-    try {
-      const response = await fetch("/api/data", {
-        method: "POST",
-  
-        headers: {
-          "Content-Type": "application/json"
-        },
-  
-        body: JSON.stringify({
-          type: "image",
-          image: base64,
-          stt: stt
-        })
-      });
-      console.log('---->',response)
-    } catch (error) {
-      console.log('<<<',error)
-    }
+    const response = await fetch("/api/data", {
+      method: "POST",
+
+      headers: {
+        "Content-Type": "application/json"
+      },
+
+      body: JSON.stringify({
+        type: "image",
+        image: base64,
+        stt: stt
+      })
+    });
+    console.log('---->',response)
+    console.log('--ok-->',response.ok)
+    console.log('--status-->',response.status)
+
+
 
     const result = await response.json();
+    console.log('000-->' ,result)
     if (!response.ok) {
       throw new Error(result.message);
     } else {
