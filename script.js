@@ -18,7 +18,7 @@ async function loadMessages() {
   try {
     const result = await response.json();
     const data = result?.data;
-    console.log('-->',data)
+    console.log('-1->',data)
 
     if (data.length === 0) {
       listElement.innerHTML = `
@@ -42,10 +42,12 @@ async function loadMessages() {
 
       const truncateH4 = document.createElement("h4");
       truncateH4.className = "font-serif text-base sm:text-lg font-bold truncate";
+      truncateH4.innerHTML = item?.name;
       baseline.appendChild(truncateH4);
 
       const whitespace = document.createElement("p");
       whitespace.className = "text-xs sm:text-sm font-serif leading-relaxed whitespace-pre-wrap opacity-90";
+      whitespace.innerHTML = item?.message;
 
       element.appendChild(baseline);
       element.appendChild(whitespace);
@@ -53,6 +55,11 @@ async function loadMessages() {
 
     });
 
+
+    const btn = gbForm.querySelector(".gb-btn");
+    if (data?.length > CONFIG.limit_loiChuc) {
+      btn.disabled = true;
+    }
 
     // result?.data?.forEach(e => list.appendChild(buildEntry(e)));
 
