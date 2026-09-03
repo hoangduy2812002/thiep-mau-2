@@ -313,24 +313,27 @@ async function createImage(event, album, stt) {
       return;
     }
 
-    const response = await fetch("/api/data", {
-      method: "POST",
-
-      headers: {
-        "Content-Type": "application/json"
-      },
-
-      body: JSON.stringify({
-        type: "image",
-        image: base64,
-        stt: stt
-      })
-    });
+    try {
+      const response = await fetch("/api/data", {
+        method: "POST",
+  
+        headers: {
+          "Content-Type": "application/json"
+        },
+  
+        body: JSON.stringify({
+          type: "image",
+          image: base64,
+          stt: stt
+        })
+      });
+      console.log('---->',response)
+    } catch (error) {
+      console.log('<<<',error)
+    }
 
     const result = await response.json();
-
     if (!response.ok) {
-      console.log('---->',response)
       throw new Error(result.message);
     } else {
       notification_img.style.display = "block";
