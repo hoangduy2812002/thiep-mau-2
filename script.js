@@ -16,8 +16,8 @@ async function loadMessages() {
 
   const response = await fetch("/api/data");
   try {
-    const data = await response.json();
-
+    const result = await response.json();
+    const data = result?.data;
     if (data.length === 0) {
       listElement.innerHTML = `
                 <div class="empty">
