@@ -18,7 +18,7 @@ async function loadMessages() {
   try {
     const result = await response.json();
     const data = result?.data;
-    console.log('-1->',data)
+    console.log('-2->',data)
 
     if (data.length === 0) {
       listElement.innerHTML = `
@@ -52,6 +52,7 @@ async function loadMessages() {
       element.appendChild(baseline);
       element.appendChild(whitespace);
 
+      listElement.appendChild(element);
 
     });
 
