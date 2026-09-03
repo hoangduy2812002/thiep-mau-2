@@ -1,3 +1,7 @@
+const listImageHome = document.getElementById("listImageHome");
+
+
+
 // Khởi động khi load: tên khách mời + hiệu ứng trái tim
 document.addEventListener('DOMContentLoaded', () => {
   getName();
@@ -424,55 +428,158 @@ function toggleGift() {
 
 
 
-// check F12
-let devtoolsOpen = false;
+// // check F12
+// let devtoolsOpen = false;
 
-const checkDevTools = () => {
-  const threshold = 160;
+// const checkDevTools = () => {
+//   const threshold = 160;
 
-  const widthDiff = window.outerWidth - window.innerWidth;
-  const heightDiff = window.outerHeight - window.innerHeight;
+//   const widthDiff = window.outerWidth - window.innerWidth;
+//   const heightDiff = window.outerHeight - window.innerHeight;
 
-  if (widthDiff > threshold || heightDiff > threshold) {
-    window.location = "https://www.youtube.com/"
-  }
+//   if (widthDiff > threshold || heightDiff > threshold) {
+//     window.location = "https://www.youtube.com/"
+//   }
 
-  document.addEventListener("keydown", function (event) {
+//   document.addEventListener("keydown", function (event) {
 
-    // Chặn F12
-    if (event.key === "F12") {
-      event.preventDefault();
-      event.stopPropagation();
-      return false;
-    }
+//     // Chặn F12
+//     if (event.key === "F12") {
+//       event.preventDefault();
+//       event.stopPropagation();
+//       return false;
+//     }
 
-    // Windows / Linux
-    if (
-      event.ctrlKey &&
-      event.shiftKey &&
-      ["I", "J", "C"].includes(event.key.toUpperCase())
-    ) {
-      event.preventDefault();
-      event.stopPropagation();
-      return false;
-    }
+//     // Windows / Linux
+//     if (
+//       event.ctrlKey &&
+//       event.shiftKey &&
+//       ["I", "J", "C"].includes(event.key.toUpperCase())
+//     ) {
+//       event.preventDefault();
+//       event.stopPropagation();
+//       return false;
+//     }
 
-    // Mac
-    if (
-      event.metaKey &&
-      event.altKey &&
-      ["I", "J", "C"].includes(event.key.toUpperCase())
-    ) {
-      event.preventDefault();
-      event.stopPropagation();
-      return false;
-    }
-  }, true);
+//     // Mac
+//     if (
+//       event.metaKey &&
+//       event.altKey &&
+//       ["I", "J", "C"].includes(event.key.toUpperCase())
+//     ) {
+//       event.preventDefault();
+//       event.stopPropagation();
+//       return false;
+//     }
+//   }, true);
 
-  // Chặn chuột phải
-  document.addEventListener("contextmenu", function (event) {
-    event.preventDefault();
-  });
-};
+//   // Chặn chuột phải
+//   document.addEventListener("contextmenu", function (event) {
+//     event.preventDefault();
+//   });
+// };
 
 // setInterval(checkDevTools, 500);
+
+async function loadImages() {
+
+  try {
+
+    const response =
+      await fetch(
+        "/api/data?type=images"
+      );
+
+
+    const result =
+      await response.json();
+
+
+    if (!response.ok) {
+
+      throw new Error(
+        result.message ||
+        "Không thể tải ảnh"
+      );
+
+    }
+    let listData = [];
+
+    for (let stt = 1; stt <= totalNumberImage; stt++) {
+
+      const item = result?.data.find(
+        item => Number(item.stt) === stt
+      );
+
+      if (item) {
+
+        listData.push(item);
+
+      } else {
+
+        listData.push({
+          stt: stt
+        });
+
+      }
+    }
+
+    createListImage(listData);
+
+    return listData;
+
+
+  } catch (error) {
+
+    console.error(
+      "LOAD IMAGES ERROR:",
+      error
+    );
+
+    return [];
+
+  }
+}
+// ========================================
+// TẢI DANH SÁCH IMAGE
+// ========================================
+
+function createListImage(e) {
+
+  e.forEach((item, stt) => {
+    const elementDiv = document.createElement("div");
+    elementDiv.className = "album-item";
+    elementDiv.id = item?.id
+    const imgDiv = document.createElement("img");
+    imgDiv.src = item?.image || '/images/noImage.png'
+
+    const albumDiv = document.createElement("div");
+    albumDiv.className = "album-placeholder";
+
+    // const albumNote = document.createElement("div");
+    // albumNote.className = "album-note";
+
+    // const btnCapNhat = document.createElement("button");
+    // btnCapNhat.className = "update-button";
+    // btnCapNhat.innerHTML = "Cập nhật";
+
+    elementDiv.appendChild(imgDiv);
+    // albumDiv.appendChild(albumNote);
+    elementDiv.appendChild(albumDiv)
+    // elementDiv.appendChild(btnCapNhat)
+    // ===== Lay index anh
+    // albumNote.innerHTML = "Ảnh " + index;
+
+    // Them chuc nang click vao anh
+    imgDiv.addEventListener("click", (event) => {
+      event.stopPropagation();
+      openLightbox(elementDiv);
+    });
+
+    // Them chuc nang click vao button
+    // btnCapNhat.addEventListener("click", (event) => {
+    //   // createImage(event, elementDiv, Number(index));
+    // });
+    listImageHome.appendChild(elementDiv);
+  });
+}
