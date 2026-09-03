@@ -4,12 +4,74 @@ const listImageHome = document.getElementById("listImageHome");
 
 // Khởi động khi load: tên khách mời + hiệu ứng trái tim
 document.addEventListener('DOMContentLoaded', () => {
+  initGuestName();
   getName();
   initFallingHearts();
   loadImages()
 });
 
+async function initGuestName() {
+  const url = window.location.pathname.substring(1);
 
+  const name = decodeURIComponent(url);
+  const slug = name.trim();
+
+  const checkGuest = await loadCheckNickName();
+
+  const guest = checkGuest.find(k => k.nickName.toLowerCase() === slug);
+  if (!guest) return;
+
+
+  // Điền tên khách mời ở cả bìa thiệp và phần thông tin nhà hàng
+  ["coverGuestName", "venueGuestName"].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = guest.name;
+  });
+}
+async function loadCheckNickName() {
+  try {
+
+    const response =
+      await fetch(
+        "/api/data?type=nickName"
+      );
+
+
+    const result =
+      await response.json();
+
+
+    if (!response.ok) {
+
+      throw new Error(
+        result.message ||
+        "Không thể tải"
+      );
+
+    }
+
+    const data = result?.data || [];
+    // ------------------------------
+    // Không có dữ liệu
+    // ------------------------------
+
+    // if (data.length === 0) {
+
+    // }
+    return data;
+
+
+  } catch (error) {
+
+    console.error(
+      "LOAD NICKNAME ERROR:",
+      error
+    );
+
+    return [];
+
+  }
+}
 // ── SỔ LƯU BÚT ─────────────────────────────────────
 
 async function loadMessages() {
