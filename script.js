@@ -18,6 +18,8 @@ async function loadMessages() {
   try {
     const result = await response.json();
     const data = result?.data;
+    console.log('-->',data)
+
     if (data.length === 0) {
       listElement.innerHTML = `
                 <div class="empty">
@@ -27,7 +29,6 @@ async function loadMessages() {
 
       return;
     }
-    console.log('-->',data)
     listElement.innerHTML = "";
    // ------------------------------
     // Hiển thị từng lời chúc
@@ -126,16 +127,16 @@ if (gbForm) {
     btn.disabled = true;
     btn.textContent = "⏳ Đang gửi...";
 
-    // saveEntry(name, message)
-    //   .then(() => {
-    //     gbForm.reset();
-    //     document.getElementById("gbName").focus();
-    //   })
-    //   .catch(() => alert("Không thể gửi lời chúc. Vui lòng thử lại!"))
-    //   .finally(() => {
-    //     btn.disabled = false;
-    //     btn.textContent = "🪄 GỬi LỜI CHÚC";
-    //   });
+    saveEntry(name, message)
+      .then(() => {
+        gbForm.reset();
+        document.getElementById("gbName").focus();
+      })
+      .catch(() => alert("Không thể gửi lời chúc. Vui lòng thử lại!"))
+      .finally(() => {
+        btn.disabled = false;
+        btn.textContent = "🪄 GỬi LỜI CHÚC";
+      });
   });
 }
 
