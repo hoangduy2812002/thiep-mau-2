@@ -1,3 +1,30 @@
+
+.venue-guest {
+  font-family: var(--font-serif);
+  font-size: 1.20rem; font-weight: 600;
+  line-height: 1.4;
+  animation: envBounce 4s ease-in-out infinite;
+  position: relative;
+}
+
+.cover-btn {
+  background: linear-gradient(135deg, #f759ab, #780650);
+  color: white;
+  border: none;
+  padding: 13px 38px;
+  border-radius: 30px;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 18px rgba(201, 162, 39, 0.35);
+  animation: envBounce 2s ease-in-out infinite;
+}
+.cover-btn:hover  { background: linear-gradient(135deg, #e8c84a, #c9a227); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(201, 162, 39, 0.45); }
+.cover-btn:active { transform: translateY(0); }
+
 /* ================================================
   LOI CHUC
 ================================================ */
