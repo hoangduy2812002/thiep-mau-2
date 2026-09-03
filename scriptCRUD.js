@@ -347,13 +347,6 @@ async function createImage(event, album, stt) {
     }
   } else {
     updateImageAPI(album);
-    notification_img.style.display = "block";
-    // Chờ 2s để Sheets kịp ghi rồi reload
-    setTimeout(() => {
-
-      notification_img.style.display = "none";
-
-    }, 4000);
   }
 
 
@@ -554,16 +547,14 @@ async function updateImageAPI(album) {
 
     }
 
-    if(response){
-      const notification = document.getElementById("notification");
-      notification.style.display = "block";
-      // Chờ 2s để Sheets kịp ghi rồi reload
-      setTimeout(() => {
-  
-        notification.style.display = "none";
-  
-      }, 4000);
-    }
+    const notification = document.getElementById("notification");
+    notification.style.display = "block";
+    // Chờ 2s để Sheets kịp ghi rồi reload
+    setTimeout(() => {
+
+      notification.style.display = "none";
+
+    }, 4000);
 
     // Xóa Base64 tạm
     delete album.dataset.base64;
