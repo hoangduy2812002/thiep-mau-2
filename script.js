@@ -6,6 +6,7 @@ const listImageHome = document.getElementById("listImageHome");
 document.addEventListener('DOMContentLoaded', () => {
   getName();
   initFallingHearts();
+  loadImages()
 });
 
 
