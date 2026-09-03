@@ -239,7 +239,7 @@ function changeImage(album) {
     // KIỂM TRA DUNG LƯỢNG ẢNH
     // ==============================
 
-    const maxSize = 5 * 1024 * 1024; // 5 MB
+    const maxSize = 3 * 1024 * 1024; // 5 MB
 
     if (file.size > maxSize) {
       alert("Ảnh không được lớn hơn 5 MB!");
