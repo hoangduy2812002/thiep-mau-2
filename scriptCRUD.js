@@ -239,10 +239,10 @@ function changeImage(album) {
     // KIỂM TRA DUNG LƯỢNG ẢNH
     // ==============================
 
-    const maxSize = 5 * 1024 * 1024; // 5 MB
+    const maxSize = 3 * 1024 * 1024; // 3 MB
 
     if (file.size > maxSize) {
-      alert("Ảnh không được lớn hơn 5 MB!");
+      alert("Ảnh không được lớn hơn 3 MB!");
       return;
     }
 
@@ -530,7 +530,6 @@ async function updateImageAPI(album) {
       );
 
     if (response?.ok === false && response?.status === 413) {
-      console.log('=====>');
       return alert("Ảnh không được có dung lượng lớn!");
     }
 
