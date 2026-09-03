@@ -554,14 +554,16 @@ async function updateImageAPI(album) {
 
     }
 
-    const notification = document.getElementById("notification");
-    notification.style.display = "block";
-    // Chờ 2s để Sheets kịp ghi rồi reload
-    setTimeout(() => {
-
-      notification.style.display = "none";
-
-    }, 4000);
+    if(response){
+      const notification = document.getElementById("notification");
+      notification.style.display = "block";
+      // Chờ 2s để Sheets kịp ghi rồi reload
+      setTimeout(() => {
+  
+        notification.style.display = "none";
+  
+      }, 4000);
+    }
 
     // Xóa Base64 tạm
     delete album.dataset.base64;
