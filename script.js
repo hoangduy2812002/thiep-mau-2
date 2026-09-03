@@ -215,6 +215,26 @@ if (gbForm) {
   });
 }
 
+// ── LIGHTBOX ẢNH ─────────────────────────────
+function openLightbox(item) {
+  const img = item.querySelector("img");
+  if (!img || img.style.display === "none" || !img.src) return;
+
+  document.getElementById("lightboxImg").src = img.src;
+  document.getElementById("lightboxImg").alt = img.alt;
+  document.getElementById("lightbox").classList.add("active");
+  document.body.style.overflow = "hidden";
+}
+
+function closeLightbox() {
+  document.getElementById("lightbox").classList.remove("active");
+  document.body.style.overflow = "";
+}
+
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape") closeLightbox();
+});
+
 
 function getName() {
   document.querySelectorAll(".chu-re").forEach(el => {
