@@ -1,4 +1,5 @@
 const listImageHome = document.getElementById("listImageHome");
+const totalNumberImage = CONFIG.totalNumberImage;
 
 
 
