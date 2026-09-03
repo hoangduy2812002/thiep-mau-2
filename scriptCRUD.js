@@ -239,7 +239,7 @@ function changeImage(album) {
     // KIỂM TRA DUNG LƯỢNG ẢNH
     // ==============================
 
-    const maxSize = 3 * 1024 * 1024; // 5 MB
+    const maxSize = 5 * 1024 * 1024; // 5 MB
 
     if (file.size > maxSize) {
       alert("Ảnh không được lớn hơn 5 MB!");
@@ -330,6 +330,7 @@ async function createImage(event, album, stt) {
     const result = await response.json();
 
     if (!response.ok) {
+      console.log('---->',response)
       throw new Error(result.message);
     } else {
       notification_img.style.display = "block";
