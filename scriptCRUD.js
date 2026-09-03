@@ -330,6 +330,10 @@ async function createImage(event, album, stt) {
     console.log('--ok-->',response.ok)
     console.log('--status-->',response.status)
 
+    if(response?.ok === false && response?.status ===413){
+      console.log('=====>');
+      return  alert("Ảnh không được có dung lượng lớn!");
+    }
 
 
     const result = await response.json();
