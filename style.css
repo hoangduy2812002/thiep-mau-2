@@ -1,3 +1,195 @@
+/* ================================================
+  LOI CHUC
+================================================ */
+.loi-chuc{
+  margin-bottom: 10px;
+}
+/* ================================================
+   ALBUM ẢNH
+================================================ */
+.album-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.album-item {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  background: rgba(0, 60, 120, 0.25);
+}
+.album-item-wide {
+  grid-column: 1 / -1;
+  aspect-ratio: 16 / 9;
+}
+.album-item img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  /* transition: transform 0.45s ease; */
+  display: block;
+}
+.album-item:hover img { transform: scale(1.06); }
+
+.album-placeholder {
+  position: absolute; inset: 0;
+  display: none; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 8px;
+  color: #8c8c8c; opacity: 0.45;
+  font-family: var(--font-sans);
+  font-size: 0.75rem; letter-spacing: 0.1em;
+}
+.album-placeholder span:first-child { font-size: 1.8rem; }
+
+/* Lightbox */
+.lightbox {
+  display: none;
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.93);
+  z-index: 9999;
+  align-items: center; justify-content: center;
+  cursor: zoom-out;
+}
+.lightbox.active { display: flex; }
+.lightbox img {
+  max-width: 92vw; max-height: 92vh;
+  object-fit: contain;
+  border: 1px solid #8c8c8c;
+  border-radius: 4px;
+}
+
+/* ================================================
+   FOOTER
+================================================ */
+.wedding-footer {
+  position: relative; z-index: 1;
+  text-align: center;
+  padding: 55px 20px 44px;
+  border-top: 1px solid #8c8c8c;
+}
+.footer-symbol { font-size: 2.6rem; color: #8c8c8c; opacity: 0.55; margin-bottom: 14px; }
+.footer-names  { font-family: var(--font-script); font-size: 2.1rem; color: #2e3d25; margin-bottom: 8px; }
+.footer-date   { font-family: var(--font-sans); font-size: 0.82rem; letter-spacing: 0.32em; color: #8c8c8c; margin-bottom: 12px; }
+.footer-wish   { font-family: var(--font-serif); font-style: italic; font-size: 1rem; color: #8c8c8c; opacity: 0.65; letter-spacing: 0.1em; }
+
+
+/* ================================================
+   SECTION DÙNG CHUNG
+================================================ */
+.section {
+  position: relative;
+  z-index: 1;
+  padding: 64px 20px;
+  max-width: 680px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.section + .section::before {
+  content: '';
+  display: block;
+  width: 100px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #8c8c8c, transparent);
+  margin: 0 auto 64px;
+}
+
+.section-title {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  color: #2e3d25;
+  margin-bottom: 25px;
+  display: inline-block;
+}
+.section-title::before,
+.section-title::after {
+  content: ' ✦ ';
+  color: #2e3d25;
+  opacity: 0.5;
+  font-size: 0.65rem;
+}
+
+/* ================================================
+   HỘP MỪNG CƯỚI
+================================================ */
+.gift-wrapper {
+  display: flex; flex-direction: column;
+  align-items: center; gap: 22px;
+}
+.gift-envelope {
+  cursor: pointer; text-align: center;
+  transition: transform 0.3s ease;
+}
+.gift-envelope:hover { transform: scale(1.06); }
+.envelope-icon {
+  font-size: 5.5rem; display: block;
+  margin-bottom: 10px;
+  animation: envBounce 2.2s ease-in-out infinite;
+}
+@keyframes envBounce {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-10px); }
+}
+.envelope-tap {
+  font-family: var(--font-sans);
+  font-size: 0.78rem; letter-spacing: 0.16em; color: #8c8c8c;
+}
+
+.gift-content {
+  display: none; text-align: center;
+  animation: fadeUp 0.5s ease;
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.gift-message {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1rem; color: #8c8c8c;
+  line-height: 1.8; margin-bottom: 22px;
+}
+.qr-area {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.qr-card {
+  display: flex; flex-direction: column;
+  align-items: center; gap: 10px;
+}
+.qr-label {
+  font-family: var(--font-sans);
+  font-size: 0.78rem; letter-spacing: 0.12em;
+  color: 2e3d25; font-weight: 600;
+}
+.qr-img {
+  max-width: 180px;
+  border: 2px solid #8c8c8c;
+  border-radius: 8px;
+  padding: 7px; background: white;
+  display: block;
+}
+.qr-placeholder {
+  width: 164px; height: 164px;
+  border: 2px dashed rgba(201,162,39,0.38);
+  border-radius: 8px;
+  display: none; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 8px;
+  color: var(--text-muted);
+  font-family: var(--font-sans); font-size: 0.82rem;
+}
+.qr-hint { font-size: 0.64rem; opacity: 0.55; text-align: center; }
 
 /* ── Trái tim rơi ── */
 .cover-hearts {
@@ -38,7 +230,6 @@
 /* 4 div bên trong thiệp */
 .content {
   display: none;
-  min-height: 100vh;
   padding: 50px 20px;
   opacity: 0;
   transform: translateY(50px);
@@ -64,6 +255,7 @@
   transform: translateY(80px);
   /* Hiệu ứng */
   transition: opacity 0.8s ease, transform 0.8s ease;
+  
 }
 
 /* Khi xuất hiện */
@@ -763,11 +955,6 @@
     * {
       outline-color: color-mix(in oklab, var(--ring) 50%, transparent);
     }
-  }
-
-  body {
-    background-color: var(--background);
-    color: var(--foreground);
   }
 
   html {
