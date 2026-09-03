@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+
+<html lang="vi">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Quản lý
+    </title>
+    <link rel="stylesheet" href="styleCRUD.css">
+    <script src="CONFIG.js"></script>
+
+</head>
+
+
+<body>
+
+    <div class="tabs">
+        <!-- 2 nút tab -->
+        <div class="tab-buttons">
+            <button class="tab-button active" onclick="openTab('tab1', this)">
+                Lời chúc
+            </button>
+
+            <button class="tab-button" onclick="openTab('tab2', this)">
+                Biệt danh
+            </button>
+
+            <button class="tab-button" onclick="openTab('tab3', this)">
+                Album
+            </button>
+        </div>
+
+        <!-- Nội dung Tab 1 -->
+        <!-- ================================= -->
+        <!-- DANH SÁCH -->
+        <!-- ================================= -->
+        <div id="tab1" class="tab-content active">
+
+            <div class="box">
+
+                <h2>
+
+                    Danh sách lời chúc
+
+                </h2>
+
+                <div>Tổng: <span id="total_loi_chuc">0</span></div>
+
+                <div id="list_loiChuc">
+
+                    Đang tải...
+
+                </div>
+
+            </div>
+        </div>
+        <!-- Nội dung Tab 2 -->
+        <div id="tab2" class="tab-content">
+            <h2 id="notification">Thành công</h2>
+            <div class="box">
+                <form class="gb-form animate-on-scroll" id="nickNameForm" novalidate>
+                    Tên <input type="text" id="gbTen" maxlength="100" placeholder="Gia đình bạn Phát" required>
+                    <div id="notification-error-name">Đã tồn tại!</div>
+                    Biệt danh <input type="text" id="gbBietDanh" maxlength="200" placeholder="gia-dinh-ban-phat" required>
+                    <div id="notification-error-nickName">Đã tồn tại!</div>
+                    <button class="btn-create" type="submit" id="btn_them_biet_danh">Thêm</button>
+                </form>
+                <h2>
+                    Danh sách biệt danh
+                </h2>
+
+                <div>Tổng: <span id="total_biet_danh">0</span></div>
+
+
+                <div id="list_nickName">
+
+                    Đang tải...
+
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Nội dung Tab 3 -->
+        <div id="tab3" class="tab-content">
+            <div id="tab3">
+                <div style="position: relative;">
+                    <h2>Click để sửa </h2>
+                    <h2 id="notification-image">Cập nhật Thành công</h2>
+                </div>
+
+                <section class="section">
+
+                    <div class="album-grid animate-on-scroll" id="listImage">
+                        Đang tải...
+                        <!-- <div class="album-item">
+                            <img src="/images/noImage.png" alt="Ảnh 1" onclick="changeImage(this.parentElement)">
+
+                            <div class="album-placeholder">
+                                <div class="album-note">Ảnh 1</div>
+                            </div>
+
+                            <button class="update-button" style="display: none;"
+                                onclick="updateImage(event, this.parentElement)">
+                                Cập nhật
+                            </button> -->
+                    </div>
+                </section>
+            </div>
+
+        </div>
+
+        <div class="container">
+
+
+
+        </div>
+
+
+        <script src="/scriptCRUD.js"></script>
+
+
+</body>
+
+</html>

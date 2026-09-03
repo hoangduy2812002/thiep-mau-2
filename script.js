@@ -2,7 +2,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   getName();
   initFallingHearts();
-  loadMessages();
 });
 
 
@@ -284,6 +283,8 @@ function openCard() {
     }, index * 300);
     playMusic();
   });
+
+  loadMessages();
 }
 
 
