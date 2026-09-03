@@ -61,7 +61,7 @@ async function loadMessages() {
     // Không có dữ liệu
     // ------------------------------
     const total_list = document.getElementById("total_loi_chuc");
-    total_list.innerHTML= data?.length;
+    total_list.innerHTML = data?.length;
 
     if (data.length === 0) {
       listElement.innerHTML = `
@@ -72,7 +72,7 @@ async function loadMessages() {
 
       return;
     }
-  
+
     listElement.innerHTML = "";
 
     // ------------------------------
@@ -326,18 +326,14 @@ async function createImage(event, album, stt) {
         stt: stt
       })
     });
-    console.log('---->',response)
-    console.log('--ok-->',response.ok)
-    console.log('--status-->',response.status)
 
-    if(response?.ok === false && response?.status ===413){
-      console.log('=====>');
-      return  alert("Ảnh không được có dung lượng lớn!");
+    if (response?.ok === false && response?.status === 413) {
+      return alert("Ảnh không được có dung lượng lớn!");
     }
 
 
     const result = await response.json();
-    console.log('000-->' ,result)
+    console.log('000-->', result)
     if (!response.ok) {
       throw new Error(result.message);
     } else {
@@ -351,13 +347,13 @@ async function createImage(event, album, stt) {
     }
   } else {
     updateImageAPI(album);
-      notification_img.style.display = "block";
-      // Chờ 2s để Sheets kịp ghi rồi reload
-      setTimeout(() => {
+    notification_img.style.display = "block";
+    // Chờ 2s để Sheets kịp ghi rồi reload
+    setTimeout(() => {
 
-        notification_img.style.display = "none";
+      notification_img.style.display = "none";
 
-      }, 4000);
+    }, 4000);
   }
 
 
@@ -427,7 +423,7 @@ async function loadImages() {
 // ========================================
 
 function createListImage(e) {
-  listImage.innerHTML="";
+  listImage.innerHTML = "";
 
   e.forEach((item, stt) => {
     let index = stt + 1;
@@ -540,6 +536,10 @@ async function updateImageAPI(album) {
         }
       );
 
+    if (response?.ok === false && response?.status === 413) {
+      console.log('=====>');
+      return alert("Ảnh không được có dung lượng lớn!");
+    }
 
     const result =
       await response.json();
@@ -691,8 +691,8 @@ async function loadNickName() {
     // Không có dữ liệu
     // ------------------------------
     const total_list = document.getElementById("total_biet_danh");
-    total_list.innerHTML= data?.length;
-    
+    total_list.innerHTML = data?.length;
+
     if (data.length === 0) {
       listNickName.innerHTML = `
                 <div class="empty">
@@ -702,18 +702,18 @@ async function loadNickName() {
 
       return;
     }
-  
+
     listNickName.innerHTML = "";
 
     // Dat gioi han cho phep
     const check_total = document.getElementById("btn_them_biet_danh");
-    if(data?.length > CONFIG.limit_NickName){
+    if (data?.length > CONFIG.limit_NickName) {
       check_total.disabled = true;
-    }else{
+    } else {
       check_total.disabled = false;
     }
 
-    
+
 
 
     // ------------------------------
